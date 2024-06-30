@@ -1,0 +1,1 @@
+ffmpeg -framerate 10 -pattern_type glob -i "/mnt/research/turbulence/hayeskea_vsf/plot_dump_246/NGC4472_density_slice_x_output_*_200_kpc.png" -f mp4 -vcodec h264 -b:v 8M -r 10 /mnt/research/turbulence/hayeskea_vsf/plot_dump_246/NGC4472_density_slice_x_200_kpc.mov

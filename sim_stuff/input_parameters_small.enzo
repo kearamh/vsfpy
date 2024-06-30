@@ -1,0 +1,188 @@
+# AMR PROBLEM DEFINITION FILE: Collapse test
+#  define problem
+#
+ProblemType                = 108      // cluster
+TopGridRank                = 3
+TopGridDimensions          = 64 64 64
+SelfGravity                = 0       // gravity off
+TopGridGravityBoundary     = 0       // periodic
+LeftFaceBoundaryCondition  = 3 3 3  // periodic
+RightFaceBoundaryCondition = 3 3 3
+PointSourceGravity         = 2
+PointSourceGravityPosition = 0.5 0.5 0.5
+PointSourceGravityConstant = 0.02
+BaryonSelfGravityApproximation = 0
+PotentialIterations = 32
+#
+# problem parameters
+#
+ClusterRefineAtStart   = 1
+ClusterNumberOfSpheres = 1
+ClusterUseParticles    = 0
+ClusterInitialTemperature = 50000000
+#
+ClusterSphereRadius[0]     = 0.25   #calculated from virial theorem
+ClusterSphereDensity[0]    = 2250.0   #perseus cluster
+ClusterSphereType[0]       = 8        #Perseus cluster, no self gravity
+ClusterSphereCoreRadius[0] = 0.05202365787   #scaled from perseus
+ClusterSpherePosition[0]   = 0.5 0.5 0.5
+ClusterSphereVelocity[0]   = 0.0 0.0 0.0   // Random Velocity in unit of km/s
+ClusterInitialSpinParameter= 0.0
+ClusterSMBHFeedback        = 1
+ClusterSMBHMass            = 1.67e8    #from 06/20/23 meeting
+EllipticalGalaxyRe         = 0.0
+OldStarFeedbackAlpha       = 0.0
+#ClusterUniformVelocity     = 0.4 0 0
+ClusterSphereC200          = 5.1    #Perseus
+ClusterBCGRho0             = 10.0   #Perseus
+ClusterBCGA0               = 5.0    #Perseus
+ClusterBaryonK0            = 20.0   #Entropy, K0
+ClusterBaryonK100          = 110.0  #Entropy, K100
+ClusterBaryonAlphaK        = 1.1    #Entropy, alpha
+#
+#  define cosmology parameters
+#
+ComovingCoordinates        = 0       // Expansion OFF
+CosmologyOmegaMatterNow    = 1.0
+CosmologyOmegaLambdaNow    = 0.0
+CosmologyHubbleConstantNow = 0.5     // in km/s/Mpc
+CosmologyComovingBoxSize   = 2     // in Mpc/h
+CosmologyMaxExpansionRate  = 0.015   // maximum allowed delta(a)/a
+CosmologyInitialRedshift   = 1.0     //
+CosmologyFinalRedshift     = 0       //
+GravitationalConstant      = 1       // this must be true for cosmology
+TimeUnits=1.78152e+17
+DensityUnits = 3.7576e-29
+LengthUnits = 1.2344e+25
+#
+#  set I/O and stop/start parameters
+#
+StopTime                = 0.85 // 5 Myr
+dtDataDump              = 0.0017  //1 Myr 
+#TimeLastDataDump        = 0.818804124522
+#CycleSkipDataDump       =  1
+#CycleLastDataDump       =  1
+DataDumpName            = output_
+StopCycle              = 10000000000
+OutputFirstTimeAtLevel     = 4
+#StopFirstTimeAtLevel       = 15
+#
+#  set hydro parameters
+#
+Gamma                       = 1.6667
+PPMDiffusionParameter       = 0       // diffusion off
+DualEnergyFormalism         = 1       // use total & internal energy
+InterpolationMethod         = 1       // SecondOrderA
+CourantSafetyNumber         = 0.2   //0.5
+##RootGridCourantSafetyNumber = 0.01
+RadiativeCooling            = 1     # was set to 0, changed to 1 by Deovrat
+MultiSpecies                = 0
+FluxCorrection              = 1
+RiemannSolver               = 4
+ConservativeInterpolation   = 0
+HydroMethod                 = 2        //Use 2 = Zeus
+#Initialdt                   = 0.003
+#ShockMethod                 = 1 #Unsplit temperature jumps
+OutputTemperature           = 1
+OutputCoolingTime           = 1
+#
+#   set star formation parameters
+#
+StarParticleCreation           = 1
+StarParticleFeedback           = 1
+StarMakerUseJeansMass          = 1
+StarMakerOverDensityThreshold  = 27881     ## 1 particle/cc
+StarMakerMassEfficiency        = 0.1
+StarMakerMinimumMass           = 1000
+StarMakerMinimumDynamicalTime  = 1.0e6
+StarMassEjectionFraction       = 0.25
+StarEnergyToThermalFeedback    = 1e-5
+StarMakerTypeIaSNe             = 1
+StarMetalYield                 = 0.02
+#StarMakerExplosionDelayTime    = -1
+#StarFeedbackKineticFraction    = 0.9
+#
+#   set AGN feedback parameters
+#
+AppendActiveParticleType            = AGNParticle
+#
+AGNParticleFeedbackType             = 1 # 0=Precipitation, 1=Cold mass, 2=Fixed Interval, 3=Bondi, 4=Delay, 5=Staggered, 6=Booth and Schaye
+AGNParticleFeedbackWeight           = 4 # 0=Volume, 1=Mass, 2=Disk, 3=Sphere, 4=Cylinder
+AGNParticleFeedbackEfficiency       = 0.003
+AGNParticleInjectionTemperature     = 1.0e+9
+AGNParticleKineticFraction          = 0.9
+AGNParticleAccretionRadiusKpc       = 0.5
+AGNParticleFeedbackRadiusKpc        = 1.0
+AGNParticleAccretionRadialExponent  = 0.0
+
+#For AGNParticleFeedbackType = 1
+AGNParticleColdMassDelay            = 1.0e6
+AGNParticleColdMassTemp            = 1.0e5
+
+#For AGNParticleFeedbackType = 2
+#AGNParticleJetPower                 = 1.0e+44 # erg/s
+#AGNParticleCycleLength              = 10.0 # Myr
+#AGNParticleActiveFraction           = 1.0
+
+# For AGNParticleFeedbackType = 3
+#AGNParticleBondiBoostFactor         = 100.0
+
+# For AGNParticleFeedbackType = 4
+#AGNParticleAccretionDelayTime       = 0.01;
+
+# For AGNParticleFeedbackType = 5
+#AGNParticleHighPower                = 1.0e+46
+#AGNParticleLowPower                 = 1.0e+41
+#AGNParticleHighPowerTime            = 5.0e-4 # 0.5 kpc
+#AGNParticleLowPowerTime             = 5.0e-4 # 0.5 kpc
+
+# For AGNParticleFeedbackType = 6
+#AGNParticleBSBondiDensityCGS        = 1.6733e-25
+#AGNParticleBSBondiBeta              = 2.0
+
+# For AGNParticleFeedbackWeight = 2
+#AGNParticleDiskRadius               = 1.25e-4 # 0.5 kpc
+#AGNParticleDiskDistance             = 1.25e-4 # 0.5 kpc
+
+# For AGNParticleFeedbackWeight = 4
+AGNCylinderRadiusKpc                = 0.5
+AGNCylinderHeightKpc                = 0.5
+AGNCylinderDistanceKpc              = 0.5
+AGNParticleShockFraction            = 0.1
+
+AGNPrecessionAngleRad               = 0.0
+#
+#  set grid refinement parameters
+#
+OptimalSubgridsPerProcessor = 16
+StaticHierarchy           = 0    // dynamic hierarchy
+MaximumRefinementLevel    = 10   //use up to this many levels
+RefineBy                  = 2    // refinement factor
+CellFlaggingMethod        = 2 12 // use baryon mass and fixed region for refinement
+MinimumEfficiency         = 0.3  // fraction efficiency
+MinimumOverDensityForRefinement = 0.3 // times the initial density
+MinimumMassForRefinementLevelExponent = -1.2 
+#MinimumEnergyRatioForRefinement = 0.4 // min Egas/Etot for shock refinement
+MustRefineRegionMinToLevel = 10
+MustRefineRegionLeftEdge  = 0.4995 0.4995 0.4995
+MustRefineRegionRightEdge = 0.5005 0.5005 0.5005
+RefineRegionLeftEdge            = 0.3 0.3 0.3
+RefineRegionRightEdge           = 0.7 0.7 0.7
+#
+#  set some global parameters
+#
+#GreensFunctionMaxNumber   = 10   // # of greens function at any one time
+#
+#
+StaticRefineRegionLevel[0] = 9
+StaticRefineRegionLeftEdge[0] = 0.49900 0.49900 0.49900
+StaticRefineRegionRightEdge[0] = 0.50100 0.50100 0.50100
+StaticRefineRegionLevel[1] = 8
+StaticRefineRegionLeftEdge[1] = 0.49800 0.49800 0.49800
+StaticRefineRegionRightEdge[1] = 0.50200 0.50200 0.50200
+StaticRefineRegionLevel[2] = 7
+StaticRefineRegionLeftEdge[2] = 0.49600 0.49600 0.49600
+StaticRefineRegionRightEdge[2] = 0.50400 0.50400 0.50400
+StaticRefineRegionLevel[3] = 6
+StaticRefineRegionLeftEdge[3] = 0.48400 0.48400 0.48400
+StaticRefineRegionRightEdge[3] = 0.51600 0.51600 0.51600

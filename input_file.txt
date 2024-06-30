@@ -1,0 +1,16 @@
+name = NGC5044
+data_in = /mnt/research/turbulence/hayeskea_vsf/cluster_small
+output = /mnt/research/turbulence/hayeskea_vsf/cluster_vsf_test_migration
+
+shape = plus
+temp_choice = 0
+temp_range = cold
+size = 50
+level = 5
+points = 35
+samples = 1000
+
+use_prev = 0
+prev_params = /mnt/research/turbulence/hayeskea_vsf/ngc5044_vsf_out_diam150_lvl6/params.pickle
+
+corner_choice = 'near'
